@@ -13,7 +13,9 @@ function agregarOpcion(select, valor, texto) {
   select.appendChild(option);
 }
 
-fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd")
+fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd", {
+  mode: 'no-cors' // Se añade el modo no-cors aquí
+})
   .then((response) => response.json())
   .then((data) => {
     // Iterar sobre los datos y crear las opciones del select
@@ -40,7 +42,9 @@ btnCalcular.addEventListener("click", function () {
   // Obtener los datos de las monedas desde la API de CoinGecko
   const apiUrl = `https://api.coingecko.com/api/v3/simple/price?ids=${monedaBase},${monedaDestino}&vs_currencies=usd`;
 
-  fetch(apiUrl)
+  fetch(apiUrl, {
+    mode: 'no-cors' // Se añade el modo no-cors aquí
+  })
     .then((response) => response.json())
     .then((data) => {
       const precioBase = data[monedaBase].usd;
