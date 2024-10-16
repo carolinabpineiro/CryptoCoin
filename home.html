@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/style/style.css">
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <title>Crypto Coin</title>
+</head>
+
+<body class="bg-cover bg-fixed bg-center" style="background-image: url('../images/background.jpg');">
+
+    <!-- Header -->
+    <header class="bg-gradient-to-b from-gray-900 to-transparent">
+        <nav class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 py-4">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a href="home.html" class="flex items-center">
+                        <img class="h-10 w-auto transition-transform duration-300 hover:scale-110" src="images/favicon.png" alt="Crypto" />
+                        <span class="ml-3 text-xl text-white font-semibold">Crypto</span>
+                    </a>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="monedas.html">
+                        <button class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out transform hover:scale-105">
+                            Favoritos
+                        </button>
+                    </a>
+                    <a href="calculadora.html">
+                        <button class="bg-stone-400 hover:bg-stone-300 text-black font-bold py-2 px-4 rounded transition duration-300 ease-in-out transform hover:scale-105">
+                            Calculadora
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Section -->
+    <main class="min-h-screen flex flex-col justify-center items-center text-center py-16">
+        <div class="bg-gray-800 bg-opacity-75 p-10 rounded-lg shadow-lg">
+            <h1 class="text-4xl font-bold text-white mb-8">Cotizaciones principales</h1>
+            <select name="monedas" id="monedas" class="w-full p-3 text-gray-800 bg-white rounded-lg mb-5 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                <!-- Opciones dinámicas -->
+            </select>
+            <button id="btndatos" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out transform hover:scale-105">
+                Buscar
+            </button>
+        </div>
+
+        <!-- Result Section -->
+        <div id="resultado" class="w-full max-w-md mt-10 bg-white p-5 rounded-lg shadow-lg hidden">
+            <div class="text-center text-gray-800">
+                <p id="nombre" class="font-bold text-xl"></p>
+                <p id="valor" class="text-lg"></p>
+                <p id="descripcion" class="text-sm text-gray-500"></p>
+                <p id="valorMaximo" class="text-md mt-2"></p>
+                <p id="valorMinimo" class="text-md"></p>
+                <p id="cambio24h" class="text-md"></p>
+                <p id="ultimaActualizacion" class="text-md text-gray-500"></p>
+            </div>
+            <button id="btnfavorita" class="mt-5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out transform hover:scale-105">
+                Agregar a favoritos
+            </button>
+        </div>
+    </main>
+
+    <script src="api.js"></script>
+    <script>
+        // Registro del Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(registration => {
+                        console.log('Service Worker registrado con éxito:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('Error al registrar el Service Worker:', error);
+                    });
+            });
+        }
+    </script>
+</body>
+
+</html>
