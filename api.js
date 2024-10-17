@@ -1,9 +1,11 @@
-let favoritas = []
+let favoritas = [];
 const btnObtenerDatos = document.getElementById('btndatos');
 const btnFavoritas = document.getElementById('btnfavorita');
 const resultado = document.getElementById('resultado');
+
 document.getElementById("btnfavorita").style.display = 'none';
 
+// Cargar monedas en el select
 fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd')
   .then(response => response.json())
   .then(data => {
@@ -21,6 +23,7 @@ fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd')
     console.log(error);
   });
 
+// Evento para obtener datos de la moneda seleccionada
 btnObtenerDatos.addEventListener('click', function () {
   const selectElement = document.getElementById('monedas');
   const selectedCoinId = selectElement.value;
@@ -31,7 +34,7 @@ btnObtenerDatos.addEventListener('click', function () {
   const valorMinimoElement = document.getElementById('valorMinimo');
   const cambio24hElement = document.getElementById('cambio24h');
   const ultimaActualizacionElement = document.getElementById('ultimaActualizacion');
-  
+
   fetch(apiUrl)
     .then(response => response.json())
     .then(data => {
@@ -48,9 +51,9 @@ btnObtenerDatos.addEventListener('click', function () {
         valorMinimoElement.textContent = `Valor mínimo: $${valorMinimo}`;
         cambio24hElement.textContent = `Cambio en las últimas 24 horas: $${cambio24h}`;
         ultimaActualizacionElement.textContent = `Última actualización: ${ultimaActualizacion}`;
- 
+
+        // Mostrar resultados
         document.getElementById("btnfavorita").style.display = 'block';
-        document.getElementById("hero") .style.display = 'none';
         document.getElementById("resultado").style.display = 'block';
     })
     .catch(error => {
@@ -58,12 +61,13 @@ btnObtenerDatos.addEventListener('click', function () {
     });
 });
 
+// Evento para agregar a favoritos
 btnFavoritas.addEventListener('click', function () {
     const selectElement = document.getElementById('monedas');
     const selectedCoinId = selectElement.value;
     const valorMonedaElement = document.getElementById('valor');
     const descripcionElement = document.getElementById('descripcion');
-    const data = [selectedCoinId, valorMonedaElement.textContent, descripcionElement.textContent]
+    const data = [selectedCoinId, valorMonedaElement.textContent, descripcionElement.textContent];
     const favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
     const favoritosfull = JSON.parse(localStorage.getItem('favoritosfull')) || [];
 
@@ -75,5 +79,5 @@ btnFavoritas.addEventListener('click', function () {
     favoritosfull.push(data);
     localStorage.setItem('favoritos', JSON.stringify(favoritos));
     localStorage.setItem('favoritosfull', JSON.stringify(favoritosfull));
-    alert("Se ha agregado la moneda a favoritos.")
+    alert("Se ha agregado la moneda a favoritos.");
 });
