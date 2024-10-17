@@ -4,9 +4,7 @@ const btnFavoritas = document.getElementById('btnfavorita');
 const resultado = document.getElementById('resultado');
 document.getElementById("btnfavorita").style.display = 'none';
 
-fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd', {
-  mode: 'no-cors' // Se añade el modo no-cors aquí
-})
+fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd')
   .then(response => response.json())
   .then(data => {
     const selectElement = document.getElementById('monedas');
@@ -34,9 +32,7 @@ btnObtenerDatos.addEventListener('click', function () {
   const cambio24hElement = document.getElementById('cambio24h');
   const ultimaActualizacionElement = document.getElementById('ultimaActualizacion');
   
-  fetch(apiUrl, {
-    mode: 'no-cors' // Se añade el modo no-cors aquí
-  })
+  fetch(apiUrl)
     .then(response => response.json())
     .then(data => {
         const nombre = data.name;
