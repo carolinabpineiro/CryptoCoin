@@ -3,8 +3,8 @@ self.addEventListener('install', event => {
       caches.open('app-cache').then(cache => {
         return cache.addAll([
           '/',
-          '/style/style.css',
-          '/images/favicon.png',
+          'style/style.css',
+          'images/favicon.png',
           // Agrega aquí todos los archivos que deseas que se almacenen en la caché
         ]);
       })
